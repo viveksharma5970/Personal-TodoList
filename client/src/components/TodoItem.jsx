@@ -8,11 +8,12 @@ export default function TodoItem({ todo, fetchTodos, setEditingTodo }) {
     if (!confirm) return;
 
     try {
-      await axios.delete(`https://personal-todo-list-backend.vercel.app/${todo._id}`, {
+      const delete_todo = await axios.delete(`https://personal-todo-list-backend.vercel.app/${todo._id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(delete_todo);
       fetchTodos();
     } catch (err) {
       console.error("Delete failed:", err.response?.data?.msg);
