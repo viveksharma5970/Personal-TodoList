@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default function TodoItem({ todo, fetchTodos, setEditingTodo }) {
+export default function TodoItem({ key, todo, fetchTodos, setEditingTodo }) {
   const token = localStorage.getItem("token");
 
   const handleDelete = async () => {
@@ -8,7 +8,7 @@ export default function TodoItem({ todo, fetchTodos, setEditingTodo }) {
     if (!confirm) return;
 
     try {
-      const delete_todo = await axios.delete(`https://personal-todo-list-backend.vercel.app/${todo._id}`, {
+      const delete_todo = await axios.delete(`https://personal-todo-list-backend.vercel.app/${key}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
