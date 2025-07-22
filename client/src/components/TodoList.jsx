@@ -10,7 +10,7 @@ export default function TodoList() {
 
   const fetchTodos = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/todos", {
+      const res = await axios.get("https://personal-todo-list-backend.vercel.app/todos", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

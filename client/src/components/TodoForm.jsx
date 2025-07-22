@@ -49,13 +49,13 @@ export default function TodoForm({ fetchTodos, editingTodo, setEditingTodo }) {
     try {
       if (editingTodo) {
         await axios.put(
-          `http://localhost:5000/todos/${editingTodo._id}`,
+          `https://personal-todo-list-backend.vercel.app/todos/${editingTodo._id}`,
           formData,
           config
         );
         setEditingTodo(null);
       } else {
-        await axios.post("http://localhost:5000/todos", formData, config);
+        await axios.post("https://personal-todo-list-backend.vercel.app/todos", formData, config);
       }
 
       setFormData({

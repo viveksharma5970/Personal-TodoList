@@ -24,7 +24,7 @@ export default function Login() {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/login", formData);
+      const res = await axios.post("https://personal-todo-list-backend.vercel.app/login", formData);
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.username);

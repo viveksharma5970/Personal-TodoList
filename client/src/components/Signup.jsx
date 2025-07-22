@@ -22,7 +22,7 @@ export default function Signup() {
     setError("");
 
     try {
-      const response = await axios.post("http://localhost:5000/signup", formData);
+      const response = await axios.post("https://personal-todo-list-backend.vercel.app/signup", formData);
       alert(response.data.msg);
       navigate("/login");
     } catch (err) {
