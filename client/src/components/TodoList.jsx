@@ -36,14 +36,11 @@ console.log(todos);
         <p className="text-center text-gray-500">No todos yet. Add some!</p>
       ) : (
         todos.map((todo) => (
-          <div>
-            <p>{todo._id}</p>
             <TodoItem
             todo={todo}
             fetchTodos={fetchTodos}
             setEditingTodo={setEditingTodo}
           />
-          </div>
           
         ))
       )}
