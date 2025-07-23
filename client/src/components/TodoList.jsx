@@ -20,7 +20,7 @@ export default function TodoList() {
       console.error("Error fetching todos:", err.response?.data?.msg);
     }
   };
-
+console.log(todos);
   useEffect(() => {
     fetchTodos();
   }, []);
@@ -36,12 +36,15 @@ export default function TodoList() {
         <p className="text-center text-gray-500">No todos yet. Add some!</p>
       ) : (
         todos.map((todo) => (
-          <TodoItem
-            key={todo._id}
+          <div>
+            <p>{todo._id}</p>
+            <TodoItem
             todo={todo}
             fetchTodos={fetchTodos}
             setEditingTodo={setEditingTodo}
           />
+          </div>
+          
         ))
       )}
     </div>
