@@ -14,8 +14,6 @@ export default function TodoItem({ todo, fetchTodos, setEditingTodo }) {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      console.log(delete_todo);
       fetchTodos();
     } catch (err) {
       console.error("Delete failed:", err.response?.data?.msg);
