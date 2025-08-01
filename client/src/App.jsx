@@ -3,10 +3,13 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Home from "./pages/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function App() {
   const isAuthenticated = !!localStorage.getItem("token");
 
   return (
+    <>
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
@@ -16,5 +19,8 @@ export default function App() {
         <Route path="/home" element={ <ProtectedRoute> <Home /> </ProtectedRoute> } />
       </Routes>
     </Router>
+    <ToastContainer position="top-center" autoClose={3000} />
+    </>
+    
   );
 }

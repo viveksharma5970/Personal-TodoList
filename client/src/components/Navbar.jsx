@@ -11,6 +11,8 @@ export default function Navbar() {
   };
 
   return (
+    <>
+    
     <nav className="bg-gray-800 text-white p-4 flex justify-between items-center">
       <h1 className="text-xl font-bold">Todo App</h1>
       <div className="flex items-center gap-4">
@@ -23,5 +25,7 @@ export default function Navbar() {
         </button>
       </div>
     </nav>
+    </>
+    
   );
 }
