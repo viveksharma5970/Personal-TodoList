@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { toast } from "react-toastify";
 export default function TodoForm({ fetchTodos, editingTodo, setEditingTodo }) {
   const [formData, setFormData] = useState({
     title: "",
@@ -54,8 +54,10 @@ export default function TodoForm({ fetchTodos, editingTodo, setEditingTodo }) {
           config
         );
         setEditingTodo(null);
+        toast.success("Task updated successfully!");
       } else {
         await axios.post("https://personal-todo-list-backend.vercel.app/todos", formData, config);
+        toast.success("Task added successfully!");
       }
 
       setFormData({
@@ -67,6 +69,7 @@ export default function TodoForm({ fetchTodos, editingTodo, setEditingTodo }) {
       fetchTodos();
     } catch (err) {
       console.error("Error submitting todo:", err.response?.data?.msg || err.message);
+      toast.error("Error for adding task!");
     }
   };
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { toast } from "react-toastify";
 export default function TodoItem({ todo, fetchTodos, setEditingTodo }) {
   const token = localStorage.getItem("token");
 
@@ -13,13 +13,14 @@ export default function TodoItem({ todo, fetchTodos, setEditingTodo }) {
           Authorization: `Bearer ${token}`,
         },
       });
+      toast.success("Task Deleted!");
       fetchTodos();
     } catch (err) {
       console.error("Delete failed:", err.response?.data?.msg);
     }
   };
 
-  // ✅ New: Toggle Completion Handler
+  // New: Toggle Completion Handler
   const handleToggle = async (id) => {
     try {
       await axios.put(
@@ -31,9 +32,11 @@ export default function TodoItem({ todo, fetchTodos, setEditingTodo }) {
           },
         }
       );
+      toast.success("Task Completed!");
       fetchTodos();
     } catch (err) {
       console.error("Toggle failed:", err.response?.data?.msg);
+      toast.error("Error in completing the task!");
     }
   };
 

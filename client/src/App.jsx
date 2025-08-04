@@ -6,7 +6,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export default function App() {
-  const isAuthenticated = !!localStorage.getItem("token");
 
   return (
     <>
@@ -15,7 +14,6 @@ export default function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} /> */}
         <Route path="/home" element={ <ProtectedRoute> <Home /> </ProtectedRoute> } />
       </Routes>
     </Router>
