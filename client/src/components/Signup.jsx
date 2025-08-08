@@ -14,6 +14,7 @@ export default function Signup() {
   });
 
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // ⬅ New loading state
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -25,6 +26,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true); // ⬅ Disable button right away
 
     try {
       const res = await axios.post(
@@ -36,6 +38,8 @@ export default function Signup() {
       navigate("/login");
     } catch (err) {
       toast.error(err.response?.data?.msg || "Signup failed");
+    } finally {
+      setLoading(false); // ⬅ Re-enable button
     }
   };
 
@@ -107,9 +111,14 @@ export default function Signup() {
         {/* Signup Button */}
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition"
+          disabled={loading} // ⬅ Disable when loading
+          className={`w-full py-3 rounded-lg text-lg font-medium transition ${
+            loading
+              ? "bg-blue-400 cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700 text-white"
+          }`}
         >
-          Sign Up
+          {loading ? "Signing up..." : "Sign Up"}
         </button>
 
         {/* Footer */}
