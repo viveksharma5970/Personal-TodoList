@@ -3,7 +3,7 @@ import axios from "axios";
 import TodoItem from "./TodoItem";
 import TodoForm from "./TodoForm";
 
-export default function TodoList() {
+export default function TodoList({refresh}) {
   const [todos, setTodos] = useState([]);
   const [editingTodo, setEditingTodo] = useState(null);
   const token = localStorage.getItem("token");
@@ -23,7 +23,7 @@ export default function TodoList() {
 console.log(todos);
   useEffect(() => {
     fetchTodos();
-  }, []);
+  }, [refresh]);
 
   return (
     <div className="p-6 max-w-2xl mx-auto">

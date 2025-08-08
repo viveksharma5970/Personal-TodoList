@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import TaskMind from "../assets/TaskMind_logo2.png";
+
 export default function Signup() {
   const navigate = useNavigate();
 
@@ -25,9 +27,12 @@ export default function Signup() {
     setError("");
 
     try {
-      const res = await axios.post("https://personal-todo-list-backend.vercel.app/signup", formData);
+      const res = await axios.post(
+        "https://personal-todo-list-backend.vercel.app/signup",
+        formData
+      );
 
-      toast(res.data.msg);
+      toast.success(res.data.msg);
       navigate("/login");
     } catch (err) {
       toast.error(err.response?.data?.msg || "Signup failed");
@@ -40,11 +45,26 @@ export default function Signup() {
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md"
       >
+        {/* Brand Header */}
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <img
+            src={TaskMind}
+            alt="TaskMind Logo"
+            className="h-12 w-12 object-contain rounded"
+          />
+          <div>
+            <h1 className="text-2xl font-extrabold tracking-tight leading-none">
+              <span>Task</span>
+              <span className="text-green-500">Mind</span>
+            </h1>
+            <p className="text-sm text-gray-500 -mt-1">
+              Your Intelligent Organizer
+            </p>
+          </div>
+        </div>
+
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-extrabold text-blue-600 mb-2">
-            Personal Todo List
-          </h1>
           <h2 className="text-2xl font-semibold text-gray-800">
             Create an Account ✨
           </h2>
